@@ -1,10 +1,12 @@
-import { createStore } from "redux";
-import { combineReducers } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+/**
+ * import 해온 것은 slice.reducer 입니다.
+ */
+import posts from "../modules/postSlice";
+import comments from "../modules/commentSlice";
 
-const rootReducer = combineReducers({
-
-    
+const store = configureStore({
+  reducer: { posts: posts, comments: comments },
 });
-const store = createStore(rootReducer);
 
 export default store;
