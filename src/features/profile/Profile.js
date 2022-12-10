@@ -3,7 +3,11 @@ import React from 'react'
 const Profile = () => {
   return (
     <div>
-      Profile
+      <img src=''/>
+      <div>
+        <div>name</div>
+        <div>github</div>
+      </div>
     </div>
   )
 }
