@@ -9,11 +9,11 @@ const Profile = () => {
   return (
     <Fragment>
     {/* align, justify, direction */}
-    <Stack justify="flex-start" align="flex-start" direction="column">
+    <Stack justify="flex-start" align="flex-start" direction="column" mg="40px 0 10px">
       <h1>hanghae99.dev</h1>
-      <Stack justify="flex-start"align="center" direction="row">
+      <Stack justify="flex-start"align="center" direction="row" mg="20px 0">
       <Img src={logo}/>
-      <Wrapper mg="20px 0">
+      <Wrapper>
         <Wrapper><span>Written by rtan</span></Wrapper>
         <Wrapper><a href="https://github.com/mugyeol"><span>GitHub</span></a></Wrapper>
       </Wrapper>
@@ -37,8 +37,8 @@ span{
   font-size:13px;
 }
 h1{
-  margin-top: 40px;
   font-size: 35px;
+  
 }
 
 `

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import flex from "../lib/flex";
 
-const Stack = ({ children, align, justify, direction, mg, pd }) => {
+const Stack = ({ children, align, justify, direction, mg, pd,gap }) => {
   return (
     <StContainer
       align={align}
@@ -10,6 +10,7 @@ const Stack = ({ children, align, justify, direction, mg, pd }) => {
       direction={direction}
       mg={mg}
       pd={pd}
+      gap={gap}
     >
       {children}
     </StContainer>
@@ -28,4 +29,5 @@ const StContainer = styled.div`
     })}
   margin: ${({ mg }) => mg || "0"};
   padding: ${({ pd }) => pd || "0"};
+  gap: ${({ gap }) => gap || "0"};
 `;
