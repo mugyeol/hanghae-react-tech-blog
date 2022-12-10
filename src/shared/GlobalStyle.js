@@ -10,8 +10,6 @@ const GlobalStyle = createGlobalStyle`
 @font-face {
     font-family: 'NanumSquareNeo-Variable';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
 }
   * {
     box-sizing: border-box;
@@ -24,6 +22,8 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     overflow: hidden;
+    width: 100vw;
+    height: 100vh;
   }
 
   html {
