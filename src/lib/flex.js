@@ -1,10 +1,10 @@
 import { css } from "styled-components";
 
-const flex = ({ jusify = "center", align = "center", direction = "row" }) => {
+const flex = ({ justify = "center", align = "center", direction = "row" }) => {
   return css`
     display: flex;
     align-items: ${align};
-    justify-content: ${jusify};
+    justify-content: ${justify};
     flex-direction: ${direction};
   `;
 };

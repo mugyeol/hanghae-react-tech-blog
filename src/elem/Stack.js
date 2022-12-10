@@ -4,9 +4,9 @@ import React from "react";
 import styled from "styled-components";
 import flex from "../lib/flex";
 
-const Stack = ({ children, align, jusify, direction }) => {
+const Stack = ({ children, align, justify, direction }) => {
   return (
-    <StContainer align={align} jusify={jusify} direction={direction}>
+    <StContainer align={align} justify={justify} direction={direction}>
       {children}
     </StContainer>
   );
@@ -15,11 +15,11 @@ const Stack = ({ children, align, jusify, direction }) => {
 export default Stack;
 
 const StContainer = styled.div`
-  width: 100%;
-  ${({ align, jusify, direction }) =>
+  /* width: 100%; */
+  ${({ align, justify, direction }) =>
     flex({
       align,
-      jusify,
+      justify,
       direction,
     })}
 `;
