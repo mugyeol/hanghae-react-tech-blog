@@ -5,17 +5,18 @@ import Header from "./Header";
 
 const Layout = ({ children }) => {
   return (
-    <StLayout>
+    <>
       <Header />
-      {children}
+      <StLayout>{children}</StLayout>
       <Footer />
-    </StLayout>
+    </>
   );
 };
 
 export default Layout;
 
 const StLayout = styled.div`
+  margin: auto;
   width: 1200px;
   min-width: 800px;
 `;
