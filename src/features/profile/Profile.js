@@ -2,29 +2,43 @@ import React from 'react'
 import Stack from '../../elem/Stack'
 import logo from "../../asset/logo192.png"
 import styled from 'styled-components'
+import Wrapper from '../../elem/Wrapper'
+import { Link } from 'react-router-dom'
 
 const Profile = () => {
   return (
-    //align, justify, direction
+    <Fragment>
+    {/* align, justify, direction */}
     <Stack justify="flex-start" align="flex-start" direction="column">
-      <Stack>
       <h1>hanghae99.dev</h1>
-      </Stack>
-      <Stack direction="row">
+      <Stack justify="flex-start"align="center" direction="row">
       <Img src={logo}/>
-      <div>
-        <div>name</div>
-        <div>github</div>
-      </div>
+      <Wrapper mg="20px 0">
+        <Wrapper><span>Written by rtan</span></Wrapper>
+        <Wrapper><a href="https://github.com/mugyeol"><span>GitHub</span></a></Wrapper>
+      </Wrapper>
       </Stack> 
     </Stack>
+    </Fragment>
   )
 }
 
 export default Profile
 
 const Img = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+`
+const Fragment = styled.div`
+
+span{
+  font-size:13px;
+}
+h1{
+  margin-top: 40px;
+  font-size: 35px;
+}
+
 `
