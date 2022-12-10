@@ -17,6 +17,6 @@ export default Layout;
 
 const StLayout = styled.div`
   margin: auto;
-  width: 1200px;
+  width: 1000px;
   min-width: 800px;
 `;

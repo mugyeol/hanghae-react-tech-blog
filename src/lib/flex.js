@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 
-const flex = ({ justify = "center", align = "center", direction = "row" }) => {
+const flex = ({ justify="center", align="center", direction="center" }) => {
   return css`
     display: flex;
     align-items: ${align};
