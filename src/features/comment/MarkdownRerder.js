@@ -33,11 +33,11 @@ const TableContainer = styled.div`
 `;
 
 const BlockQutoeStyle = styled.blockquote`
-  padding: 0.2rem 1rem;
-  border-left: 3px solid blueviolet;
+  padding: 1.8rem;
+  border-left: 5px solid var(--color-point1);
   margin-left: 0;
   background-color: whitesmoke;
-  color: blueviolet;
+  color: var(--color-point1);
 `;
 
 function BlockQutoe(children) {
