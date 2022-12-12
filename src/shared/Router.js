@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 const Router = () => {
   return (
     <>
-      <Layout>
+      {/* <Layout> */}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Main />} />
@@ -15,7 +15,7 @@ const Router = () => {
             <Route path="/form" element={<AddPostForm />} />
           </Routes>
         </BrowserRouter>
-      </Layout>
+      {/* </Layout> */}
     </>
   );
 };

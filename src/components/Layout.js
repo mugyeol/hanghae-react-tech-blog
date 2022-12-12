@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
 export default Layout;
 
 const StLayout = styled.div`
-  margin: auto;
+  margin: 0 auto;
   width: 1000px;
   min-width: 800px;
 `;

@@ -36,9 +36,7 @@ const PostList = () => {
           }}
         >
           <h1>{post.title}</h1>
-          <textarea readOnly rows={4}>
-            {post.content}
-          </textarea>
+          <textarea value={post.content} readOnly rows={4}/>
         </Card>
       ))}
     </Stack>
@@ -47,12 +45,12 @@ const PostList = () => {
 
 export default PostList;
 const Card = styled.div`
-  /* border: 1px solid blueviolet; */
+  border: 1px solid blueviolet;
   width: 100%;
   height: 170px;
   padding: 15px;
   cursor: grab;
-  border: 1px solid black;
+  border-radius: 10px;
 
   h1 {
     font-size: 25px;
