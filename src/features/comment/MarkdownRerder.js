@@ -14,7 +14,7 @@ const MarkDownStyle = styled.div`
 
 // 표일 때
 const TableContainer = styled.div`
-  height: 350px;
+  height: ${({ height }) => height || "350px"};
   width: 100%;
   img {
     width: 50%;
@@ -44,10 +44,10 @@ function BlockQutoe(children) {
   return <BlockQutoeStyle>{children.children}</BlockQutoeStyle>;
 }
 
-const MarkdownRenderer = ({ markdown }) => {
+const MarkdownRenderer = ({ markdown, height }) => {
   return (
     <MarkDownStyle>
-      <TableContainer>
+      <TableContainer height={height}>
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           children={markdown}
