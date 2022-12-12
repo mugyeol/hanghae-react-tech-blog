@@ -5,7 +5,11 @@ const Button = (props) => {
   return (
     <StButton
       border={props.border}
-      hover={props.hover}
+      background={props.background}
+      color={props.color}
+      hoverBacground={props.hoverBacground}
+      hoverBorderColor={props.hoverBorderColor}
+      hoverColor={props.hoverColor}
       type={props.type || "button"}
       onClick={props.onClick}
       color={props.color}
@@ -24,11 +28,16 @@ const StButton = styled.button`
   margin: 0 5px 0 0;
   background-color: white;
   color: ${({ color }) => color || css`var(--color-point1)`};
-  &:hover,
   &:active {
     background: ${({ hover }) => hover || css`var(--color-point2)`};
     border-color: ${({ hover }) => hover || css`var(--color-point2)`};
     color: white;
+  &:hover:enabled {
+    background: ${({ hoverBacground }) =>
+      hoverBacground || css`var(--color-point2)`};
+    border-color: ${({ hoverBorderColor }) =>
+      hoverBorderColor || css`var(--color-point2)`};
+    color: ${({ hoverColor }) => hoverColor || "white"};
   }
 
   &:focus {
