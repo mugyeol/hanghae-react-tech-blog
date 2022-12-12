@@ -1,5 +1,5 @@
 import React from "react";
-import styled,{css} from "styled-components";
+import styled, { css } from "styled-components";
 
 const Button = (props) => {
   return (
@@ -8,6 +8,7 @@ const Button = (props) => {
       hover={props.hover}
       type={props.type || "button"}
       onClick={props.onClick}
+      color={props.color}
     >
       {props.children}
     </StButton>
@@ -22,7 +23,7 @@ const StButton = styled.button`
   cursor: pointer;
   margin: 0 5px 0 0;
   background-color: white;
-
+  color: ${({ color }) => color || css`var(--color-point1)`};
   &:hover,
   &:active {
     background: ${({ hover }) => hover || css`var(--color-point2)`};
