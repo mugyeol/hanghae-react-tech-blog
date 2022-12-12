@@ -77,7 +77,7 @@ const postSlice = createSlice({
       state.isLoading = false;
       state.posts.list = action.payload.list;
 
-      console.log("action",action.payload)
+      console.log("action", action.payload);
       const arr = [...state.posts.categories];
       arr.forEach((ctgr, index) => {
         ctgr.ctgr === action.payload.category

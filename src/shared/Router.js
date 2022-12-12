@@ -8,13 +8,13 @@ const Router = () => {
   return (
     <>
       {/* <Layout> */}
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/post/:id" element={<Detail />} />
-            <Route path="/form" element={<AddPostForm />} />
-          </Routes>
-        </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/post/:id" element={<Detail />} />
+          <Route path="/form" element={<AddPostForm />} />
+        </Routes>
+      </BrowserRouter>
       {/* </Layout> */}
     </>
   );

@@ -1,11 +1,15 @@
 import React from "react";
-import styled,{css} from "styled-components";
+import styled, { css } from "styled-components";
 
 const Button = (props) => {
   return (
     <StButton
       border={props.border}
-      hover={props.hover}
+      background={props.background}
+      color={props.color}
+      hoverBacground={props.hoverBacground}
+      hoverBorderColor={props.hoverBorderColor}
+      hoverColor={props.hoverColor}
       type={props.type || "button"}
       onClick={props.onClick}
     >
@@ -22,12 +26,14 @@ const StButton = styled.button`
   cursor: pointer;
   margin: 0 5px 0 0;
   background-color: white;
+  color: var(--color-point1);
 
-  &:hover,
-  &:active {
-    background: ${({ hover }) => hover || css`var(--color-point2)`};
-    border-color: ${({ hover }) => hover || css`var(--color-point2)`};
-    color: white;
+  &:hover:enabled {
+    background: ${({ hoverBacground }) =>
+      hoverBacground || css`var(--color-point2)`};
+    border-color: ${({ hoverBorderColor }) =>
+      hoverBorderColor || css`var(--color-point2)`};
+    color: ${({ hoverColor }) => hoverColor || "white"};
   }
 
   &:focus {

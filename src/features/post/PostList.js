@@ -34,20 +34,35 @@ const PostList = () => {
     >
       <StCategory>
         {posts.categories.map((category) => (
-          <Button border={category.isActive ? `3px solid var(--color-point1)` : null} key={category.id} onClick={() => onClicCategorykHandler(category.ctgr)}>
+          <Button
+            border={category.isActive ? `3px solid var(--color-point1)` : null}
+            key={category.id}
+            onClick={() => onClicCategorykHandler(category.ctgr)}
+          >
             {category.ctgr}
           </Button>
         ))}
       </StCategory>
       {posts.list.map((post) => (
-        <Card key={post.pId} 
-          onClick={() => {
-            navigate(`/post/${post.pId}`);
-          }}
-        >
-          <h1>{post.title}</h1>
-          <textarea value={post.content} readOnly rows={4} />
-          <Button>{post.category}</Button>
+        <Card key={post.pId}>
+          <h1
+            onClick={() => {
+              navigate(`/post/${post.pId}`);
+            }}
+          >
+            {post.title}
+          </h1>
+          <textarea
+            onClick={() => {
+              navigate(`/post/${post.pId}`);
+            }}
+            value={post.content}
+            readOnly
+            rows={4}
+          />
+          <Button onClick={() => onClicCategorykHandler(post.category)}>
+            {post.category}
+          </Button>
         </Card>
       ))}
     </Stack>
@@ -60,11 +75,12 @@ const Card = styled.div`
   width: 100%;
   height: 170px;
   padding: 15px;
-  cursor: grab;
+  /* cursor: grab; */
   border-radius: 10px;
 
   h1 {
     font-size: 25px;
+    cursor: grab;
   }
   textarea {
     font-size: 15px;
