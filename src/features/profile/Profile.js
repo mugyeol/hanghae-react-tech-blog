@@ -10,7 +10,9 @@ const Profile = () => {
     <Fragment>
     {/* align, justify, direction */}
     <Stack justify="flex-start" align="flex-start" direction="column" mg="40px 0 10px">
-      <h1>hanghae99.dev</h1>
+      <h1 onClick={()=>{
+        window.location.reload()
+      }}>hanghae99.dev</h1>
       <Stack justify="flex-start"align="center" direction="row" mg="20px 0">
       <Img src={logo}/>
       <Wrapper mg="0 0 0 5px">
@@ -37,6 +39,7 @@ span{
 }
 h1{
   font-size: 35px;
+  cursor: pointer;
   
 }
 
