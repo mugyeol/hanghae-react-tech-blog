@@ -11,19 +11,34 @@ const Profile = () => {
   const navigate = useNavigate();
   return (
     <Fragment>
-    {/* align, justify, direction */}
-    <Stack justify="flex-start" align="flex-start" direction="column" mg="40px 0 10px">
-      <h1 onClick={()=>{
-        window.location.reload()
-      }}>hanghae99.dev</h1>
-      <Stack justify="flex-start"align="center" direction="row" mg="20px 0">
-      <Img src={logo}/>
-      <Wrapper mg="0 0 0 5px">
-        <Wrapper><span>Written by rtan</span></Wrapper>
-        <Wrapper><a href="https://github.com/mugyeol"><span>GitHub</span></a></Wrapper>
-      </Wrapper>
-      </Stack> 
-    </Stack>
+      {/* align, justify, direction */}
+      <Stack
+        justify="flex-start"
+        align="flex-start"
+        direction="column"
+        mg="40px 0 10px"
+      >
+        <h1
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+          hanghae99.dev
+        </h1>
+        <Stack justify="flex-start" align="center" direction="row" mg="20px 0">
+          <Img src={logo} />
+          <Wrapper mg="0 0 0 5px">
+            <Wrapper>
+              <span>Written by rtan</span>
+            </Wrapper>
+            <Wrapper>
+              <a href="https://github.com/mugyeol">
+                <span>GitHub</span>
+              </a>
+            </Wrapper>
+          </Wrapper>
+        </Stack>
+      </Stack>
     </Fragment>
   );
 };
@@ -36,13 +51,11 @@ const Img = styled.img`
   border-radius: 20px;
 `;
 const Fragment = styled.div`
-
-span{
-  font-size:13px;
-}
-h1{
-  font-size: 35px;
-  cursor: pointer;
-  
-}
-
+  span {
+    font-size: 13px;
+  }
+  h1 {
+    font-size: 35px;
+    cursor: pointer;
+  }
+`;
