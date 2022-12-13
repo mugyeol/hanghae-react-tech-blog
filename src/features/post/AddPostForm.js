@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
 import styled from "styled-components";
 import Button from "../../elem/Button";
-import { useState } from "react";
-import axios from "axios";
 import MarkdownRenderer from "../comment/MarkdownRerder";
-import { useParams } from "react-router-dom";
 
+//-- 디자인 --//
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: end;
@@ -74,6 +75,7 @@ const ContentContainer = styled.div`
   }
 `;
 
+//-- JSX --//
 const AddPostForm = () => {
   const { postid } = useParams();
   const [input, setInput] = useState({
@@ -103,6 +105,7 @@ const AddPostForm = () => {
     if (input.title === "" || input.content === "") {
       alert("값을 입력해주세요");
     } else {
+      // 수정하기
       if (postid) {
         console.log(input);
         console.log(input.title);
@@ -112,6 +115,7 @@ const AddPostForm = () => {
           content: "",
           category: "",
         });
+        // 추가하기
       } else {
         await axios.post("http://localhost:3001/posts", input);
         setInput({
@@ -123,6 +127,7 @@ const AddPostForm = () => {
     }
   };
 
+  // 인풋 state 가져오기
   const onChangeHandler = (e) => {
     e.preventDefault();
     const { name, value } = e.target;

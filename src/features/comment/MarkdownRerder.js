@@ -9,7 +9,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 const MarkDownStyle = styled.div`
   font-size: 15px;
   line-height: 2.5rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 // 표일 때
