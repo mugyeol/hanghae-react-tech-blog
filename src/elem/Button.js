@@ -26,8 +26,12 @@ const StButton = styled.button`
   cursor: pointer;
   margin: 0 5px 0 0;
   background-color: white;
-  color: var(--color-point1);
-
+  color: ${({ color }) => color || css`var(--color-point1)`};
+  &:active {
+    background: ${({ hover }) => hover || css`var(--color-point2)`};
+    border-color: ${({ hover }) => hover || css`var(--color-point2)`};
+    color: white;
+  }
   &:hover:enabled {
     background: ${({ hoverBacground }) =>
       hoverBacground || css`var(--color-point2)`};
@@ -35,7 +39,6 @@ const StButton = styled.button`
       hoverBorderColor || css`var(--color-point2)`};
     color: ${({ hoverColor }) => hoverColor || "white"};
   }
-
   &:focus {
     outline: none;
   }

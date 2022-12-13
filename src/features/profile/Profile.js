@@ -1,11 +1,14 @@
-import React from 'react'
-import Stack from '../../elem/Stack'
-import logo from "../../asset/pic1.jpg"
-import styled from 'styled-components'
-import Wrapper from '../../elem/Wrapper'
-import { Link } from 'react-router-dom'
+import React from "react";
+import Stack from "../../elem/Stack";
+import logo from "../../asset/pic1.jpg";
+import styled from "styled-components";
+import Wrapper from "../../elem/Wrapper";
+import { Link } from "react-router-dom";
+import Button from "../../elem/Button";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   return (
     <Fragment>
     {/* align, justify, direction */}
@@ -22,16 +25,16 @@ const Profile = () => {
       </Stack> 
     </Stack>
     </Fragment>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
 
 const Img = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 20px;
-`
+`;
 const Fragment = styled.div`
 
 span{
@@ -43,4 +46,3 @@ h1{
   
 }
 
-`

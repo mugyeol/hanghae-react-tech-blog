@@ -9,6 +9,7 @@ import {
   __getPostsByCategory,
 } from "../../redux/modules/postSlice";
 import Button from "../../elem/Button";
+import MarkdownRenderer from "../comment/MarkdownRerder";
 
 const PostList = () => {
   const dispatch = useDispatch();
@@ -54,13 +55,14 @@ const PostList = () => {
           >
             {post.title}
           </h1>
-          <textarea
+          <MarkdownRenderer
             onClick={() => {
               navigate(`/post/${post.pId}`);
             }}
-            value={post.content}
+            markdown={post.content}
             readOnly
             rows={4}
+            height="80px"
           />
           <Button onClick={() => onClicCategorykHandler(post.category)}>
             {post.category}

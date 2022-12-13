@@ -6,6 +6,7 @@ export const __getPosts = createAsyncThunk(
   "getPosts",
   async (payload, thunkAPI) => {
     try {
+      console.log(serverUrl);
       //promise 객체에서 data 추출 ?
       const { data } = await axios.get(`${serverUrl}/posts`);
       return thunkAPI.fulfillWithValue(data);
