@@ -9,13 +9,16 @@ import {
   __getPostsByCategory,
 } from "../../redux/modules/postSlice";
 import Button from "../../elem/Button";
+import MarkdownRenderer from "../comment/MarkdownRerder";
 
 const PostList = () => {
   const dispatch = useDispatch();
   const { posts, error } = useSelector((state) => state.posts);
+  console.log("postList component posts",posts)
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("use Effect")
     dispatch(__getPosts());
   }, [dispatch]);
 
@@ -52,13 +55,14 @@ const PostList = () => {
           >
             {post.title}
           </h1>
-          <textarea
+          <MarkdownRenderer
             onClick={() => {
               navigate(`/post/${post.pId}`);
             }}
-            value={post.content}
+            markdown={post.content}
             readOnly
             rows={4}
+            height="80px"
           />
           <Button onClick={() => onClicCategorykHandler(post.category)}>
             {post.category}
@@ -80,7 +84,7 @@ const Card = styled.div`
 
   h1 {
     font-size: 25px;
-    cursor: grab;
+    cursor: pointer;
   }
   textarea {
     font-size: 15px;
@@ -88,14 +92,15 @@ const Card = styled.div`
     resize: none;
     width: 100%;
     border-color: transparent;
-    cursor: grab;
+    cursor: pointer;
   }
 `;
 const StCategory = styled.div`
   display: flex;
   direction: row;
-  gap: 5px;
+  gap: 10px;
   padding: 5px;
   align-items: center;
   justify-content: flex-start;
+  margin: 0 20px;
 `;

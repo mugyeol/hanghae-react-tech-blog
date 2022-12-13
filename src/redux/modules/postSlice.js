@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { act } from "react-dom/test-utils";
 import { serverUrl } from ".";
 
 export const __getPosts = createAsyncThunk(
@@ -22,11 +21,11 @@ export const __getPostsByCategory = createAsyncThunk(
     try {
       //promise 객체에서 data 추출 ?
       const { data } = await axios.get(`${serverUrl}/posts?category=${arg}`);
-      console.log("data", data);
       const object = {
         category: arg,
         list: data,
       };
+      console.log("axios object", object);
       return thunkAPI.fulfillWithValue(object);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -78,7 +77,7 @@ const postSlice = createSlice({
       state.isLoading = false;
       state.posts.list = action.payload.list;
 
-      console.log("action", action.payload);
+      console.log("__getPostsByCategory", action.payload);
       const arr = [...state.posts.categories];
       arr.forEach((ctgr, index) => {
         ctgr.ctgr === action.payload.category
