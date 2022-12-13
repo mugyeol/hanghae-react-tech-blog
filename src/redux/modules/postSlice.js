@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { act } from "react-dom/test-utils";
 import { serverUrl } from ".";
 
 export const __getPosts = createAsyncThunk(
@@ -25,7 +24,7 @@ export const __getPostsByCategory = createAsyncThunk(
         category: arg,
         list: data,
       };
-      console.log("axios object",object);
+      console.log("axios object", object);
       return thunkAPI.fulfillWithValue(object);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
