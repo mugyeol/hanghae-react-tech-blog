@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Button from "../../elem/Button";
 import { useState } from "react";
 import axios from "axios";
 import MarkdownRenderer from "../comment/MarkdownRerder";
+import { useParams } from "react-router-dom";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -74,19 +75,52 @@ const ContentContainer = styled.div`
 `;
 
 const AddPostForm = () => {
+  const { postid } = useParams();
   const [input, setInput] = useState({
     title: "",
     content: "",
     category: "",
   });
 
+  // 수정 내용 받아오기
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get(
+        `http://localhost:3001/posts?id=${postid}`
+      );
+      const [selectData] = data;
+      setInput({
+        title: selectData.title,
+        content: selectData.content,
+        category: selectData.category,
+      });
+    };
+    fetchData();
+  }, [postid]);
+
+  // 버튼으로 추가 및 수정하기
   const onClickHandler = async () => {
-    await axios.post("http://localhost:3001/posts", input);
-    setInput({
-      title: "",
-      content: "",
-      category: "",
-    });
+    if (input.title === "" || input.content === "") {
+      alert("값을 입력해주세요");
+    } else {
+      if (postid) {
+        console.log(input);
+        console.log(input.title);
+        await axios.patch(`http://localhost:3001/posts/${postid}`, input);
+        setInput({
+          title: "",
+          content: "",
+          category: "",
+        });
+      } else {
+        await axios.post("http://localhost:3001/posts", input);
+        setInput({
+          title: "",
+          content: "",
+          category: "",
+        });
+      }
+    }
   };
 
   const onChangeHandler = (e) => {
@@ -97,12 +131,11 @@ const AddPostForm = () => {
       [name]: value,
     });
   };
-  console.log(input);
   return (
     <div>
       <ButtonContainer>
         <Button type="button" onClick={onClickHandler}>
-          발행하기
+          {postid ? "수정하기" : "발행하기"}
         </Button>
       </ButtonContainer>
       <TitleContainer>
