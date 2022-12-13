@@ -13,6 +13,7 @@ const Router = () => {
           <Route path="/" element={<Main />} />
           <Route path="/post" element={<Detail />} />
           <Route path="/form" element={<Create />} />
+          <Route path="/form/:postid" element={<Create />} />
         </Routes>
       </BrowserRouter>
       {/* </Layout> */}
