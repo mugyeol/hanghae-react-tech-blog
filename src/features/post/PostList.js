@@ -50,14 +50,14 @@ const PostList = () => {
         <Card key={post.pId}>
           <h1
             onClick={() => {
-              navigate(`/post/${post.pId}`);
+              navigate(`/post/${post.id}`);
             }}
           >
             {post.title}
           </h1>
           <MarkdownRenderer
             onClick={() => {
-              navigate(`/post/${post.pId}`);
+              navigate(`/post/${post.id}`);
             }}
             markdown={post.content}
             readOnly

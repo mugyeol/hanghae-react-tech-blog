@@ -20,7 +20,7 @@ const Profile = () => {
       >
         <h1
           onClick={() => {
-            window.location.reload();
+            navigate('/')
           }}
         >
           hanghae99.dev
