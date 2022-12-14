@@ -92,6 +92,9 @@ const AddPostForm = () => {
     category: "",
   });
   const navigate = useNavigate();
+  // date 가져오기
+  const date = new window.Date();
+  const selectDate = date.toLocaleDateString("ko-kr");
 
   // 수정 내용 받아오기
   useEffect(() => {
@@ -109,6 +112,7 @@ const AddPostForm = () => {
   const onClickHandler = async () => {
     const postInput = {
       ...input,
+      date: selectDate,
       id: uuid(),
     };
     if (input.title === "" || input.content === "") {
