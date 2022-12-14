@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
 const MarkDownStyle = styled.div`
-  font-size: 15px;
+  font-size: ${({ fontsize }) => fontsize || "20px"};
   line-height: 2.5rem;
   overflow-y: auto;
 `;
@@ -44,9 +44,9 @@ function BlockQutoe(children) {
   return <BlockQutoeStyle>{children.children}</BlockQutoeStyle>;
 }
 
-const MarkdownRenderer = ({ markdown, height }) => {
+const MarkdownRenderer = ({ markdown, height, fontsize }) => {
   return (
-    <MarkDownStyle>
+    <MarkDownStyle fontsize={fontsize}>
       <TableContainer height={height}>
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
