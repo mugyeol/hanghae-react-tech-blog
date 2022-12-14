@@ -1,13 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { serverUrl } from ".";
 
 export const __getEditPost = createAsyncThunk(
   "editPost/getEditPost",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(
-        `http://localhost:3001/posts?id=${payload}`
-      );
+      const { data } = await axios.get(`${serverUrl}/posts?id=${payload}`);
       const [selectData] = data;
       return thunkAPI.fulfillWithValue(selectData);
     } catch (error) {

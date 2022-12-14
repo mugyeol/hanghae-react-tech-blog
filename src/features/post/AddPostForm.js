@@ -1,14 +1,16 @@
+// 훅
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import uuid from "react-uuid";
+import { serverUrl } from "../../redux/modules";
+// 리덕스
 import { __getEditPost } from "../../redux/modules/editPostSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+// 디자인
 import styled from "styled-components";
 import Button from "../../elem/Button";
 import MarkdownRenderer from "../comment/MarkdownRerder";
-
-import uuid from "react-uuid";
 
 //-- 디자인 --//
 const ButtonContainer = styled.div`
@@ -115,7 +117,7 @@ const AddPostForm = () => {
       // 수정하기
       if (postid) {
         try {
-          await axios.patch(`http://localhost:3001/posts/${postid}`, input);
+          await axios.patch(`${serverUrl}/posts/${postid}`, input);
           setInput({
             title: "",
             content: "",
@@ -128,7 +130,7 @@ const AddPostForm = () => {
         // 추가하기
       } else {
         try {
-          await axios.post("http://localhost:3001/posts", postInput);
+          await axios.post(`${serverUrl}/posts`, postInput);
           setInput({
             title: "",
             content: "",
