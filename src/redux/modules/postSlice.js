@@ -50,7 +50,6 @@ const postSlice = createSlice({
     [__getPosts.fulfilled]: (state, action) => {
       let arr = [];
       action.payload.forEach((post) => {
-        console.log(post.category.trim(), "trim");
         if (post.category.trim() !== "") arr.push(post.category);
       });
       arr = [...new Set(arr)];
