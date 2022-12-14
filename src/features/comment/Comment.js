@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Button from "../../elem/Button";
+import { useDispatch } from "react-redux";
+import { __addComment } from "../../redux/modules/commentSlice";
 
 const Comment = () => {
-  const [comments, setComments] = useState("");
+  const dispatch = useDispatch();
 
   const [addComment, setAddComment] = useState({
     useName: "",
@@ -12,15 +14,12 @@ const Comment = () => {
     isDone: false,
   });
 
-  const onClickAddButton = (comment) => {
-    console.log(comment);
-    axios.post("http://localhost:3001/comments", comment);
-    setAddComment({
-      useName: "",
-      comment: "",
-      isDone: false,
-    });
-    setComments([...comments, comment]);
+  const onClickAddButton = (addComment) => {
+    if (addComment.useName === "" || addComment.comment === "") {
+      alert("닉네임과 댓글을 입력해주세요");
+    } else {
+      dispatch(__addComment(addComment));
+    }
   };
 
   return (
@@ -73,7 +72,7 @@ const StComment = styled.div`
 `;
 
 const StCommentInput = styled.input`
-  width: 68%;
+  width: 71%;
   padding: 10px 10px;
   margin: 15px 10px 20px 5px;
   box-sizing: border-box;

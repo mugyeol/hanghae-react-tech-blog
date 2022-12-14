@@ -2,27 +2,42 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import Button from "../../elem/Button";
+import {
+  __getComments,
+  __deleteComment,
+  changeIsDone,
+  __editComment,
+} from "../../redux/modules/commentSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const CommentList = () => {
-  const [comments, setComments] = useState("");
+  const dispatch = useDispatch();
+  const { isLoading, error, comments } = useSelector((state) => state.comments);
 
-  const fetchComments = async () => {
-    const { data } = await axios.get("http://localhost:3001/comments");
-    setComments(data);
+  const [editComment, setEditComment] = useState({ comment: "" });
+
+  const onChangeEditHandler = (commentId, edit) => {
+    dispatch(__editComment([commentId, edit]));
+  };
+
+  const onClickDeleteButton = (commentId) => {
+    dispatch(__deleteComment(commentId));
+  };
+  const onChangeDoneHandler = (index) => {
+    dispatch(changeIsDone(index));
   };
 
   useEffect(() => {
-    fetchComments();
-  }, []);
+    dispatch(__getComments());
+  }, [dispatch]);
 
-  const onClickDeleteButton = (commentId) => {
-    axios.delete(`http://localhost:3001/comments/${commentId}`);
-  };
-  const onChangeDoneHandler = (index) => {
-    const arr = [...comments];
-    arr[index].isDone = !arr[index].isDone;
-    setComments(arr);
-  };
+  if (isLoading) {
+    return <div>로딩 중....</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
 
   return (
     <div>
@@ -31,6 +46,12 @@ const CommentList = () => {
           comment.isDone === false ? (
             <StComments key={comment.id}>
               {comment.useName} - {comment.comment}
+              <input
+                type="text"
+                onChange={(event) => {
+                  setEditComment({ comment: event.target.value });
+                }}
+              ></input>
               <Button
                 type="button"
                 onClick={() => {
@@ -53,7 +74,9 @@ const CommentList = () => {
               {comment.useName} -
               <input style={{ padding: "6px" }} value={comment.comment}></input>
               <Button
+                type="button"
                 onClick={() => {
+                  onChangeEditHandler(comment.id, editComment);
                   onChangeDoneHandler(index);
                 }}
               >
@@ -70,22 +93,6 @@ const CommentList = () => {
             </StComments>
           )
         )}
-      {/* {comments &&
-        comments.map((comment) => (
-          <StComments key={comment.id}>
-            {comment.useName} -{" "}
-            <input style={{ padding: "6px" }} value={comment.comment}></input>
-            <UpdateButton>수정</UpdateButton>
-            <DeleteButton
-              type="button"
-              onClick={() => {
-                onClickDeleteButton(comment.id);
-              }}
-            >
-              삭제
-            </DeleteButton>
-          </StComments>
-        ))} */}
     </div>
   );
 };
