@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 const Main = () => {
   return (
     <Layout>
-      <Profile />
+      <Profile isMain={true} />
       <PostList/>
       
     </Layout>
