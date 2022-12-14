@@ -1,42 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import CommentList from "../features/comment/CommentList";
 import Comment from "../features/comment/Comment";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import Profile from "../features/profile/Profile";
-import postSlice from "../redux/modules/postSlice";
-import { serverUrl } from "../redux/modules";
-
-//----------- Post 컴포넌트 추가 -----------//
 import Post from "../features/post/Post";
+import Layout from "../components/Layout";
 
 const Detail = () => {
   const { param } = useParams();
-  const [post, setPost] = useState({
-    title: "",
-    content: "",
-  });
-
-  const fetchPost = async () => {
-    const { data } = await axios.get(`${serverUrl}/post`);
-    const post = data.find((post) => post.id === parseInt(param));
-    setPost(post);
-  };
-
-  useEffect(() => {
-    fetchPost();
-  }, []);
 
   return (
-    <Stcontainer>
-      <Post param={param} />
-      <div>
-        <Profile />
-      </div>
-      <Comment />
-      <CommentList />
-    </Stcontainer>
+    <Layout>
+      <Stcontainer>
+        <Post param={param} />
+        <div>
+          <Profile />
+        </div>
+        <Comment />
+        <CommentList />
+      </Stcontainer>
+    </Layout>
   );
 };
 
