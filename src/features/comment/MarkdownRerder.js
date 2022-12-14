@@ -7,9 +7,10 @@ import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
 const MarkDownStyle = styled.div`
-  font-size: 15px;
+  font-size: ${({ fontsize }) => fontsize || "16px"};
   line-height: 2.5rem;
   overflow-y: auto;
+  margin: ${({ margin }) => margin || "0"};
 `;
 
 // 표일 때
@@ -44,9 +45,9 @@ function BlockQutoe(children) {
   return <BlockQutoeStyle>{children.children}</BlockQutoeStyle>;
 }
 
-const MarkdownRenderer = ({ markdown, height }) => {
+const MarkdownRenderer = ({ markdown, height, fontsize, margin }) => {
   return (
-    <MarkDownStyle>
+    <MarkDownStyle fontsize={fontsize} margin={margin}>
       <TableContainer height={height}>
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}

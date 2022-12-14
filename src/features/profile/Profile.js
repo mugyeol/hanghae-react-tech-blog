@@ -36,6 +36,13 @@ const Profile = () => {
                 <span>GitHub</span>
               </a>
             </Wrapper>
+            <Button
+              onClick={() => {
+                navigate("form");
+              }}
+            >
+              글쓰기
+            </Button>
           </Wrapper>
         </Stack>
       </Stack>

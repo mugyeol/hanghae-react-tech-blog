@@ -6,6 +6,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Profile from "../features/profile/Profile";
 import postSlice from "../redux/modules/postSlice";
+import { serverUrl } from "../redux/modules";
 
 const Detail = () => {
   const { param } = useParams();
@@ -15,7 +16,7 @@ const Detail = () => {
   });
 
   const fetchPost = async () => {
-    const { data } = await axios.get("http://localhost:3001/post");
+    const { data } = await axios.get(`${serverUrl}/post`);
     const post = data.find((post) => post.id === parseInt(param));
     setPost(post);
   };
