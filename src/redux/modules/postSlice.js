@@ -15,6 +15,7 @@ export const __getPosts = createAsyncThunk(
     }
   }
 );
+
 export const __getPostsByCategory = createAsyncThunk(
   "getPostsByCategory",
   async (arg, thunkAPI) => {
