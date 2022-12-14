@@ -4,9 +4,16 @@ import { configureStore } from "@reduxjs/toolkit";
  */
 import posts from "../modules/postSlice";
 import comments from "../modules/commentSlice";
+import editPost from "../modules/editPostSlice";
+import detailmainPost from "../modules/detailmainSlice";
 
 const store = configureStore({
-  reducer: { posts: posts, comments: comments },
+  reducer: {
+    posts: posts,
+    comments: comments,
+    editPost: editPost,
+    detailmainPost: detailmainPost,
+  },
 });
 
 export default store;
