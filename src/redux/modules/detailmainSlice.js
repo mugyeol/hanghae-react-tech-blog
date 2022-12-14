@@ -19,6 +19,7 @@ const initialState = {
     title: "",
     category: "",
     content: "",
+    date: "",
   },
   isLoading: false,
   error: null,
@@ -39,6 +40,7 @@ const detailmainSlice = createSlice({
         title: action.payload.title,
         content: action.payload.content,
         category: action.payload.category,
+        date: action.payload.date,
       };
     },
     [__getDetailmain.rejected]: (state, action) => {

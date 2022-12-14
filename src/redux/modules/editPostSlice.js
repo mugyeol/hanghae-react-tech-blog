@@ -20,6 +20,7 @@ const initialState = {
     title: "",
     content: "",
     category: "",
+    date: "",
   },
   isLoading: false,
   error: null,
@@ -40,6 +41,7 @@ const editPostSlice = createSlice({
         title: action.payload.title,
         content: action.payload.content,
         category: action.payload.category,
+        date: action.payload.date,
       };
     },
     [__getEditPost.rejected]: (state) => {

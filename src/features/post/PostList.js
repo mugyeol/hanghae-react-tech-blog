@@ -47,7 +47,7 @@ const PostList = () => {
         ))}
       </StCategory>
       {posts.list.map((post) => (
-        <Card key={post.pId}>
+        <Card key={post.id}>
           <h1
             onClick={() => {
               navigate(`/post/${post.id}`);
@@ -65,6 +65,7 @@ const PostList = () => {
             fontsize="13px"
             height="80px"
             margin="0 0 5px 0 "
+            cursor="pointer"
           />
           {post.category.trim() !== "" && (
             <Button onClick={() => onClicCategorykHandler(post.category)}>
