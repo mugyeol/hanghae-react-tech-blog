@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import styled from "styled-components";
 import Button from "../../elem/Button";
 import MarkdownRenderer from "../comment/MarkdownRerder";
+
+import uuid from "react-uuid";
 
 //-- 디자인 --//
 const ButtonContainer = styled.div`
@@ -83,46 +85,53 @@ const AddPostForm = () => {
     content: "",
     category: "",
   });
+  const navigate = useNavigate();
 
   // 수정 내용 받아오기
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get(
-        `http://localhost:3001/posts?id=${postid}`
-      );
-      const [selectData] = data;
-      setInput({
-        title: selectData.title,
-        content: selectData.content,
-        category: selectData.category,
-      });
-    };
-    fetchData();
+    if (postid) {
+      const fetchData = async () => {
+        const { data } = await axios.get(
+          `http://localhost:3001/posts?id=${postid}`
+        );
+        const [selectData] = data;
+        setInput({
+          title: selectData.title,
+          content: selectData.content,
+          category: selectData.category,
+        });
+      };
+      fetchData();
+    }
   }, [postid]);
 
   // 버튼으로 추가 및 수정하기
   const onClickHandler = async () => {
+    const postInput = {
+      ...input,
+      id: uuid(),
+    };
     if (input.title === "" || input.content === "") {
       alert("값을 입력해주세요");
     } else {
       // 수정하기
       if (postid) {
-        console.log(input);
-        console.log(input.title);
         await axios.patch(`http://localhost:3001/posts/${postid}`, input);
         setInput({
           title: "",
           content: "",
           category: "",
         });
+        navigate(`test/${postid}`);
         // 추가하기
       } else {
-        await axios.post("http://localhost:3001/posts", input);
+        await axios.post("http://localhost:3001/posts", postInput);
         setInput({
           title: "",
           content: "",
           category: "",
         });
+        navigate(`/test/${postInput.id}`);
       }
     }
   };
