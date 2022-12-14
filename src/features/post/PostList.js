@@ -14,11 +14,11 @@ import MarkdownRenderer from "../comment/MarkdownRerder";
 const PostList = () => {
   const dispatch = useDispatch();
   const { posts, error } = useSelector((state) => state.posts);
-  console.log("postList component posts",posts)
+  console.log("postList component posts", posts);
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("use Effect")
+    console.log("use Effect");
     dispatch(__getPosts());
   }, [dispatch]);
 
@@ -62,7 +62,9 @@ const PostList = () => {
             markdown={post.content}
             readOnly
             rows={4}
+            fontsize="13px"
             height="80px"
+            margin="0 0 5px 0 "
           />
           <Button onClick={() => onClicCategorykHandler(post.category)}>
             {post.category}
