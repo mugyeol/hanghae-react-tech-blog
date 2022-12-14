@@ -23,10 +23,6 @@ const Post = ({ param }) => {
     dispatch(__getDetailmain(param), [dispatch]);
   }, [dispatch, param]);
 
-  // date 가져오기
-  const date = new window.Date();
-  const selectDate = date.toLocaleDateString("ko-kr");
-
   // 수정 클릭 시
   const onClickEditHandler = (id) => {
     navigate(`/form/${id}`);
@@ -67,13 +63,14 @@ const Post = ({ param }) => {
       <Title>{detailmainPost.title}</Title>
       <SubTitleContainer>
         <Category> #{detailmainPost.category}</Category>
-        <Date>{selectDate}</Date>
+        <Date>{detailmainPost.date}</Date>
       </SubTitleContainer>
       <ContentContainer>
         <MarkdownRenderer
           markdown={detailmainPost.content}
           fontsize="18px"
           height="auto"
+          overflow="visible"
         ></MarkdownRenderer>
       </ContentContainer>
     </div>

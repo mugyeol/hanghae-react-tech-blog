@@ -9,8 +9,9 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 const MarkDownStyle = styled.div`
   font-size: ${({ fontsize }) => fontsize || "16px"};
   line-height: 2.5rem;
-  overflow-y: auto;
+  overflow-y: ${({ overflow }) => overflow || "auto"};
   margin: ${({ margin }) => margin || "0"};
+  cursor: ${({ cursor }) => cursor || "default"};
 `;
 
 // 표일 때
@@ -45,9 +46,21 @@ function BlockQutoe(children) {
   return <BlockQutoeStyle>{children.children}</BlockQutoeStyle>;
 }
 
-const MarkdownRenderer = ({ markdown, height, fontsize, margin }) => {
+const MarkdownRenderer = ({
+  markdown,
+  height,
+  fontsize,
+  margin,
+  overflow,
+  cursor,
+}) => {
   return (
-    <MarkDownStyle fontsize={fontsize} margin={margin}>
+    <MarkDownStyle
+      fontsize={fontsize}
+      margin={margin}
+      overflow={overflow}
+      cursor={cursor}
+    >
       <TableContainer height={height}>
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
