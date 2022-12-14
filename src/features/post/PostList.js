@@ -66,9 +66,11 @@ const PostList = () => {
             height="80px"
             margin="0 0 5px 0 "
           />
-          <Button onClick={() => onClicCategorykHandler(post.category)}>
-            {post.category}
-          </Button>
+          {post.category.trim() !== "" && (
+            <Button onClick={() => onClicCategorykHandler(post.category)}>
+              {post.category}
+            </Button>
+          )}
         </Card>
       ))}
     </Stack>
