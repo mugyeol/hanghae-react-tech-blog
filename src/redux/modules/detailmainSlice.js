@@ -1,13 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { serverUrl } from ".";
 
 export const __getDetailmain = createAsyncThunk(
   "detailmainPost/getDetailmain",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(
-        `http://localhost:3001/posts/${payload}`
-      );
+      const { data } = await axios.get(`${serverUrl}/posts/${payload}`);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

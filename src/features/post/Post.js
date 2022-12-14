@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { serverUrl } from "../../redux/modules";
 // 리덕스
 import { useDispatch, useSelector } from "react-redux";
 import { __getDetailmain } from "../../redux/modules/detailmainSlice";
@@ -38,7 +39,7 @@ const Post = ({ param }) => {
     } else {
       // '네' 클릭 시
       try {
-        await axios.delete(`http://localhost:3001/posts/${id}`);
+        await axios.delete(`${serverUrl}/posts/${id}`);
         navigate("/");
       } catch (error) {
         console.log(error);
@@ -72,7 +73,7 @@ const Post = ({ param }) => {
         <MarkdownRenderer
           markdown={detailmainPost.content}
           fontsize="18px"
-          height="300px"
+          height="auto"
         ></MarkdownRenderer>
       </ContentContainer>
     </div>
@@ -120,4 +121,4 @@ const ButtonContainer = styled.div`
   justify-content: end;
 `;
 
-export default Post;
+export default React.memo(Post);
