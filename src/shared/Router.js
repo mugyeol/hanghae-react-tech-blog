@@ -4,6 +4,10 @@ import Main from "../pages/Main";
 import Detail from "../pages/Detail";
 import Create from "../pages/Create";
 import Layout from "../components/Layout";
+
+//test
+import DetailTest from "../pages/DetailTest";
+
 const Router = () => {
   return (
     <>
@@ -12,6 +16,7 @@ const Router = () => {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/post/:param" element={<Detail />} />
+          <Route path="/test/:param" element={<DetailTest />} />
           <Route path="/form" element={<Create />} />
           <Route path="/form/:postid" element={<Create />} />
         </Routes>
