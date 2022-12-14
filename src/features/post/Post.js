@@ -1,28 +1,48 @@
-import React from "react";
-import styled from "styled-components";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+// 리덕스
+import { useDispatch, useSelector } from "react-redux";
+import { __getDetailmain } from "../../redux/modules/detailmainSlice";
+// 스타일
+import styled from "styled-components";
+// 컴포넌트
 import MarkdownRenderer from "../comment/MarkdownRerder";
 import Button from "../../elem/Button";
 
-const Post = ({ param, post }) => {
+const Post = ({ param }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { detailmainPost, error } = useSelector(
+    (state) => state.detailmainPost
+  );
+
+  // 내용 받아오기
+  useEffect(() => {
+    dispatch(__getDetailmain(param), [dispatch]);
+  }, [dispatch, param]);
 
   // date 가져오기
   const date = new window.Date();
   const selectDate = date.toLocaleDateString("ko-kr");
 
+  // 수정 클릭 시
   const onClickEditHandler = (id) => {
     navigate(`/form/${id}`);
   };
 
-  const onClickDeleteHandler = (id) => {
+  // 삭제 클릭 시
+  const onClickDeleteHandler = async (id) => {
     if (!window.confirm("삭제하시겠습니까?")) {
-      // '아니오'에 대한 기능
+      // '아니오' 클릭 시 다시 원위치
     } else {
-      // '네'에 대한 기능
-      axios.delete(`http://localhost:3001/posts/${id}`);
-      navigate("/");
+      // '네' 클릭 시
+      try {
+        await axios.delete(`http://localhost:3001/posts/${id}`);
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   return (
@@ -43,14 +63,14 @@ const Post = ({ param, post }) => {
           삭제
         </Button>
       </ButtonContainer>
-      <Title>{post.title}</Title>
+      <Title>{detailmainPost.title}</Title>
       <SubTitleContainer>
-        <Category> #{post.category}</Category>
+        <Category> #{detailmainPost.category}</Category>
         <Date>{selectDate}</Date>
       </SubTitleContainer>
       <ContentContainer>
         <MarkdownRenderer
-          markdown={post.content}
+          markdown={detailmainPost.content}
           fontsize="18px"
           height="300px"
         ></MarkdownRenderer>
@@ -64,10 +84,8 @@ const Title = styled.div`
   align-items: center;
   width: 100%;
   padding: 20px 15px;
-  /* height: 70px; */
   font-size: 30px;
   font-weight: 800;
-  /* margin: 40px 0 10px 30px; */
   color: var(--color-point1);
   border-bottom: solid 2px var(--color-point1);
 `;

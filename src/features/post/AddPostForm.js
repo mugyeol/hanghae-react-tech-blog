@@ -1,6 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { __getEditPost } from "../../redux/modules/editPostSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
 import Button from "../../elem/Button";
@@ -80,6 +82,8 @@ const ContentContainer = styled.div`
 //-- JSX --//
 const AddPostForm = () => {
   const { postid } = useParams();
+  const dispatch = useDispatch();
+  const { editPost, error } = useSelector((state) => state.editPost);
   const [input, setInput] = useState({
     title: "",
     content: "",
@@ -90,20 +94,14 @@ const AddPostForm = () => {
   // 수정 내용 받아오기
   useEffect(() => {
     if (postid) {
-      const fetchData = async () => {
-        const { data } = await axios.get(
-          `http://localhost:3001/posts?id=${postid}`
-        );
-        const [selectData] = data;
-        setInput({
-          title: selectData.title,
-          content: selectData.content,
-          category: selectData.category,
-        });
-      };
-      fetchData();
+      dispatch(__getEditPost(postid), [dispatch]);
+      setInput({
+        title: editPost.title,
+        content: editPost.content,
+        category: editPost.category,
+      });
     }
-  }, [postid]);
+  }, [dispatch, postid, editPost.title, editPost.content, editPost.category]);
 
   // 버튼으로 추가 및 수정하기
   const onClickHandler = async () => {
@@ -116,22 +114,30 @@ const AddPostForm = () => {
     } else {
       // 수정하기
       if (postid) {
-        await axios.patch(`http://localhost:3001/posts/${postid}`, input);
-        setInput({
-          title: "",
-          content: "",
-          category: "",
-        });
-        navigate(`test/${postid}`);
+        try {
+          await axios.patch(`http://localhost:3001/posts/${postid}`, input);
+          setInput({
+            title: "",
+            content: "",
+            category: "",
+          });
+          navigate(`/test/${postid}`);
+        } catch (error) {
+          console.log(error);
+        }
         // 추가하기
       } else {
-        await axios.post("http://localhost:3001/posts", postInput);
-        setInput({
-          title: "",
-          content: "",
-          category: "",
-        });
-        navigate(`/test/${postInput.id}`);
+        try {
+          await axios.post("http://localhost:3001/posts", postInput);
+          setInput({
+            title: "",
+            content: "",
+            category: "",
+          });
+          navigate(`/test/${postInput.id}`);
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
   };
