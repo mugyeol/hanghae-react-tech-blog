@@ -28,7 +28,7 @@ const Profile = ({ isMain }) => {
           </h1>
         )}
         <Stack justify="flex-start" align="center" direction="row" mg="20px 0">
-          <Img src={logo} />
+          <Img onClick={() => navigate("/")} src={logo} />
           <Wrapper mg="0 0 0 5px">
             <Wrapper>
               <span>Written by rtan</span>
@@ -58,6 +58,7 @@ const Img = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 20px;
+  cursor: pointer;
 `;
 const Fragment = styled.div`
   span {
