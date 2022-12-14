@@ -6,7 +6,7 @@ import Create from "../pages/Create";
 import Layout from "../components/Layout";
 
 //--------------- test 곧 삭제 ---------------//
-import DetailTest from "../pages/DetailTest";
+// import DetailTest from "../pages/DetailTest";
 //------------------------------------------//
 
 const Router = () => {
@@ -18,7 +18,7 @@ const Router = () => {
           <Route path="/" element={<Main />} />
           <Route path="/post/:param" element={<Detail />} />
           {/* 곧 삭제 */}
-          <Route path="/test/:param" element={<DetailTest />} />
+          {/* <Route path="/test/:param" element={<DetailTest />} /> */}
           {/* 곧 삭제 */}
           <Route path="/form" element={<Create />} />
           <Route path="/form/:postid" element={<Create />} />

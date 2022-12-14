@@ -8,6 +8,9 @@ import Profile from "../features/profile/Profile";
 import postSlice from "../redux/modules/postSlice";
 import { serverUrl } from "../redux/modules";
 
+//----------- Post 컴포넌트 추가 -----------//
+import Post from "../features/post/Post";
+
 const Detail = () => {
   const { param } = useParams();
   const [post, setPost] = useState({
@@ -27,9 +30,7 @@ const Detail = () => {
 
   return (
     <Stcontainer>
-      <Title>{post.title}</Title>
-      {post.category}
-      <Stbody>{post.content}</Stbody>
+      <Post param={param} />
       <div>
         <Profile />
       </div>
@@ -44,6 +45,7 @@ const Stcontainer = styled.div`
   margin: 0 auto;
   width: 1000px;
   min-width: 800px;
+  padding: 40px;
 `;
 const Category = styled.div`
   display: flex;

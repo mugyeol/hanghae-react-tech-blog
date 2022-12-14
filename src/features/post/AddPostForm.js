@@ -123,7 +123,7 @@ const AddPostForm = () => {
             content: "",
             category: "",
           });
-          navigate(`/test/${postid}`);
+          navigate(`/post/${postid}`);
         } catch (error) {
           console.log(error);
         }
@@ -136,7 +136,7 @@ const AddPostForm = () => {
             content: "",
             category: "",
           });
-          navigate(`/test/${postInput.id}`);
+          navigate(`/post/${postInput.id}`);
         } catch (error) {
           console.log(error);
         }
