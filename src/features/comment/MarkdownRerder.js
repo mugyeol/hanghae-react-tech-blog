@@ -53,6 +53,7 @@ const MarkdownRenderer = ({
   margin,
   overflow,
   cursor,
+  onClick,
 }) => {
   return (
     <MarkDownStyle
@@ -60,6 +61,7 @@ const MarkdownRenderer = ({
       margin={margin}
       overflow={overflow}
       cursor={cursor}
+      onClick={onClick}
     >
       <TableContainer height={height}>
         <ReactMarkdown
