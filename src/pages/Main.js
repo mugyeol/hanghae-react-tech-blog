@@ -8,8 +8,7 @@ const Main = () => {
   return (
     <Layout>
       <Profile />
-      <PostList/>
-      
+      <PostList />
     </Layout>
   );
 };

@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  position: relative;
-  transform: translateY(0%);
+  /* position: relative; */
+  /* transform: translateY(0%); */
   display: flex;
   justify-content: center;
   width: 100vw;
   padding: 20px;
   background-color: white;
-  z-index: 1;
+  /* z-index: 1; */
 `;
 
 const Footer = () => {
