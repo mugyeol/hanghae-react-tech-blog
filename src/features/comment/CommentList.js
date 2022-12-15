@@ -9,9 +9,11 @@ import {
   __editComment,
 } from "../../redux/modules/commentSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const CommentList = () => {
   const dispatch = useDispatch();
+  const { param } = useParams();
   const { isLoading, error, comments } = useSelector((state) => state.comments);
 
   const [editComment, setEditComment] = useState({ comment: "" });
@@ -28,7 +30,7 @@ const CommentList = () => {
   };
 
   useEffect(() => {
-    dispatch(__getComments());
+    dispatch(__getComments(param));
   }, [dispatch]);
 
   if (isLoading) {

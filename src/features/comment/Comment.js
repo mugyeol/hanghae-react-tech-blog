@@ -4,13 +4,16 @@ import styled from "styled-components";
 import Button from "../../elem/Button";
 import { useDispatch } from "react-redux";
 import { __addComment } from "../../redux/modules/commentSlice";
+import { useParams } from "react-router-dom";
 
 const Comment = () => {
   const dispatch = useDispatch();
+  const { param } = useParams();
 
   const [addComment, setAddComment] = useState({
     useName: "",
     comment: "",
+    postId: 0,
     isDone: false,
   });
 
@@ -18,7 +21,7 @@ const Comment = () => {
     if (addComment.useName === "" || addComment.comment === "") {
       alert("닉네임과 댓글을 입력해주세요");
     } else {
-      dispatch(__addComment(addComment));
+      dispatch(__addComment({ ...addComment, postId: param }));
     }
   };
 
