@@ -9,7 +9,6 @@ const Main = () => {
     <Layout>
       <Profile isMain={true} />
       <PostList/>
-      
     </Layout>
   );
 };
