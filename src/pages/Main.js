@@ -7,8 +7,8 @@ import Layout from "../components/Layout";
 const Main = () => {
   return (
     <Layout>
-      <Profile />
-      <PostList />
+      <Profile isMain={true} />
+      <PostList/>
     </Layout>
   );
 };

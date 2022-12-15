@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Button from "../../elem/Button";
 import { useNavigate } from "react-router-dom";
 
-const Profile = () => {
+const Profile = ({ isMain }) => {
   const navigate = useNavigate();
   return (
     <Fragment>
@@ -18,15 +18,17 @@ const Profile = () => {
         direction="column"
         mg="40px 0 10px"
       >
-        <h1
-          onClick={() => {
-            navigate('/')
-          }}
-        >
-          hanghae99.dev
-        </h1>
+        {isMain && (
+          <h1
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            hanghae99.dev
+          </h1>
+        )}
         <Stack justify="flex-start" align="center" direction="row" mg="20px 0">
-          <Img src={logo} />
+          <Img onClick={() => navigate("/")} src={logo} />
           <Wrapper mg="0 0 0 5px">
             <Wrapper>
               <span>Written by rtan</span>
@@ -56,6 +58,7 @@ const Img = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 20px;
+  cursor: pointer;
 `;
 const Fragment = styled.div`
   span {
