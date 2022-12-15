@@ -6,7 +6,7 @@ const initialState = {
   comments: [],
   isLoading: false,
   error: null,
-  // isDone: false,
+  isDone: false,
 };
 
 // __getComments : 댓글 불러오기
@@ -14,7 +14,7 @@ export const __getComments = createAsyncThunk(
   "comments/getComments",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get(`${serverUrl}/comments`);
+      const data = await axios.get(`${serverUrl}/comments?postid=id`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -39,8 +39,8 @@ export const __deleteComment = createAsyncThunk(
   "comment/deleteComment",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.delete(`${serverUrl}/comments/${payload}`);
-      return thunkAPI.fulfillWithValue(data.data);
+      await axios.delete(`${serverUrl}/comments/${payload}`);
+      return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -67,8 +67,8 @@ const commentSlice = createSlice({
   initialState,
   reducers: {
     changeIsDone: (state, action) => {
-      state = [...state];
-      state[action.payload].isDone = !state[action.payload].isDone;
+      state.comments[action.payload].isDone =
+        !state.comments[action.payload].isDone;
     },
   },
   extraReducers: {
@@ -89,8 +89,8 @@ const commentSlice = createSlice({
       state.isLoading = true;
     },
     [__addComment.fulfilled]: (state, action) => {
-      state.isLoading = false;
       state.comments = [...state.comments, action.payload];
+      state.isLoading = false;
     },
     [__addComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -100,9 +100,9 @@ const commentSlice = createSlice({
     [__deleteComment.pending]: (state) => {
       state.isLoading = true;
     },
-    [__addComment.fulfilled]: (state, action) => {
+    [__deleteComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.comments = [...state.comments].filter((comments) => {
+      state.comments = state.comments.filter((comments) => {
         return comments.id != action.payload;
       });
     },
@@ -115,8 +115,17 @@ const commentSlice = createSlice({
       state.isLoading = true;
     },
     [__editComment.fulfilled]: (state, action) => {
+      const value = action.payload;
       state.isLoading = false;
-      state.comments = action.payload;
+      state.comments = state.comments.map((comments) => {
+        if (comments.id === value.id) {
+          return {
+            ...comments,
+            comment: value.comment,
+          };
+        }
+        return comments;
+      });
     },
     [__editComment.rejected]: (state, action) => {
       state.isLoading = false;

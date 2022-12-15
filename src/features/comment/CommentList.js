@@ -46,12 +46,12 @@ const CommentList = () => {
           comment.isDone === false ? (
             <StComments key={comment.id}>
               {comment.useName} - {comment.comment}
-              <input
+              {/* <input
                 type="text"
                 onChange={(event) => {
                   setEditComment({ comment: event.target.value });
                 }}
-              ></input>
+              ></input> */}
               <Button
                 type="button"
                 onClick={() => {
@@ -72,7 +72,13 @@ const CommentList = () => {
           ) : (
             <StComments key={comment.id}>
               {comment.useName} -
-              <input style={{ padding: "6px" }} value={comment.comment}></input>
+              <input
+                type="text"
+                style={{ padding: "6px" }}
+                onChange={(event) => {
+                  setEditComment({ comment: event.target.value });
+                }}
+              ></input>
               <Button
                 type="button"
                 onClick={() => {
