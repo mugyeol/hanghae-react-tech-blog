@@ -66,6 +66,7 @@ const PostList = () => {
             height="80px"
             margin="0 0 5px 0 "
             cursor="pointer"
+            overflow="hidden"
           />
           {post.category.trim() !== "" && (
             <Button onClick={() => onClicCategorykHandler(post.category)}>

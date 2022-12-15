@@ -36,10 +36,12 @@ const Header = () => {
       >
         Hi.dev
       </MainTitle>
-      <GithubIcon
-        src={process.env.PUBLIC_URL + "/imgs/github.svg"}
-        alt="giticon"
-      ></GithubIcon>
+      <a href="https://github.com/mugyeol">
+        <GithubIcon
+          src={process.env.PUBLIC_URL + "/imgs/github.svg"}
+          alt="giticon"
+        ></GithubIcon>
+      </a>
     </Container>
   );
 };
