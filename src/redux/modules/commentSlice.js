@@ -14,7 +14,7 @@ export const __getComments = createAsyncThunk(
   "comments/getComments",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get(`${serverUrl}/comments?postid=id`);
+      const data = await axios.get(`${serverUrl}/comments?postId=${payload}`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -25,8 +25,10 @@ export const __getComments = createAsyncThunk(
 // __addComment : 댓글 추가
 export const __addComment = createAsyncThunk(
   "comment/addComment",
+
   async (payload, thunkAPI) => {
     try {
+      console.log(payload);
       const data = await axios.post(`${serverUrl}/comments`, payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
