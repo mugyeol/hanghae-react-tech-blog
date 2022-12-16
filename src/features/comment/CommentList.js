@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import Button from "../../elem/Button";
 import {
   __getComments,
@@ -48,12 +47,6 @@ const CommentList = () => {
           comment.isDone === false ? (
             <StComments key={comment.id}>
               {comment.useName} - {comment.comment}
-              {/* <input
-                type="text"
-                onChange={(event) => {
-                  setEditComment({ comment: event.target.value });
-                }}
-              ></input> */}
               <Button
                 type="button"
                 onClick={() => {
@@ -113,24 +106,8 @@ const StComments = styled.div`
   width: 90%;
   height: 50px;
   font-size: 20px;
-  border: 2px solid #323232;
+  border: 2px solid var(--color-point1);
   border-radius: 12px;
   margin: 5px 0 5px 30px;
   padding-left: 20px;
-`;
-
-const UpdateButton = styled.button`
-  background-color: #415c5a;
-  color: white;
-  width: 50px;
-  padding: 5px;
-  margin: 20px 0 20px 10px;
-`;
-
-const DeleteButton = styled.button`
-  background-color: #f6c69e;
-  color: black;
-  width: 50px;
-  padding: 5px;
-  margin: 20px 0 20px 10px;
 `;
