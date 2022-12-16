@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import styled from "styled-components";
 import Button from "../../elem/Button";
 import { useDispatch } from "react-redux";
@@ -79,7 +78,7 @@ const StCommentInput = styled.input`
   padding: 10px 10px;
   margin: 15px 10px 20px 5px;
   box-sizing: border-box;
-  border: solid 2px #323232;
+  border: solid 2px var(--color-point1);
   border-radius: 8px;
 `;
 
@@ -88,6 +87,6 @@ const StUserName = styled.input`
   padding: 10px 10px;
   margin: 15px 0 20px 30px;
   box-sizing: border-box;
-  border: solid 2px #323232;
+  border: solid 2px var(--color-point1);
   border-radius: 8px;
 `;
